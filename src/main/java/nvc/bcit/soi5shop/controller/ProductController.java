@@ -20,6 +20,8 @@ import nvc.bcit.soi5shop.repository.CategoryRepository;
 import nvc.bcit.soi5shop.service.ProductService;
 
 import javax.validation.Valid;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 @Controller
@@ -46,6 +48,19 @@ public class ProductController {
         modelMap.addAttribute("product",product);
         return "newproduct";
     }
+
+    @GetMapping(value="/name/{name}")
+    public ModelAndView getProductsByName(@PathVariable("name") String name) {
+        List<Product> products = productService.findByName(name);
+        return new ModelAndView("product","products", products);
+    }
+
+    @GetMapping(value="/price/{price}")
+    public ModelAndView getProductsByName(@PathVariable("price") double price) {
+        List<Product> products = productService.findByPriceLimit(price);
+        return new ModelAndView("product","products", products);
+    }
+    
 
     @PostMapping("/add")
     public String saveProduct(@Valid Product product, BindingResult result, RedirectAttributes attributes){

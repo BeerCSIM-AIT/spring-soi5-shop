@@ -18,6 +18,14 @@ public class ProductService {
         return productRepository.findAll(Sort.by("id").ascending());
     }
 
+    public List<Product> findByName(String name){
+        return productRepository.findByNameContaining(name);
+    }
+
+    public List<Product> findByPriceLimit(double price){
+        return productRepository.findByPriceLessThanEqual(price);
+    }
+
     public Product getOne(Integer id){
         return productRepository.getById(id);
     }
