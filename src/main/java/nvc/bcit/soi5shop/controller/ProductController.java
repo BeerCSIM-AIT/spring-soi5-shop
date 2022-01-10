@@ -20,7 +20,6 @@ import nvc.bcit.soi5shop.repository.CategoryRepository;
 import nvc.bcit.soi5shop.service.ProductService;
 
 import javax.validation.Valid;
-import org.springframework.web.bind.annotation.RequestParam;
 
 
 
