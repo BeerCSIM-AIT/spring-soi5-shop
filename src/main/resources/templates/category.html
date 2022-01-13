@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" layout:decorator="layout/default_layout">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products</title>
+</head>
+<body>
+    <div layout:fragment="content">
+        <div class="row mt-3">
+            <div class="col-md-12" style="text-align: right;">
+                <a href="/product/new" class="btn btn-success">Add new product</a>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="h1">All Products</div>
+            <div th:each="c: ${categories}" class="col-md-12 mt-2">
+                <div class="h3 mb-3" th:text="${c.name}"></div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Category</th>
+                            <th>Price</th>
+                            <th>Unit In Stock</th>
+                            <th>Manage</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="product: ${c.products}">
+                            <td th:text="${product.id}"></td>
+                            <td th:text="${product.name}"></td>
+                            <td th:text="${product.category.name}"></td>
+                            <td th:text="${product.price}"></td>
+                            <td th:text="${product.unitInStock}"></td>
+                            <td>
+                                <a th:href="@{'/product/edit/' + ${product.id}}" class="btn btn-info btn-sm">
+                                    Edit
+                                </a>
+                                <a th:href="@{'/product/delete/' + ${product.id}}" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure to delete this product?')">
+                                    Delete
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

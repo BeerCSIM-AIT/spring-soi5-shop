@@ -11,10 +11,13 @@ import nvc.bcit.soi5shop.model.Product;
 import nvc.bcit.soi5shop.service.ProductService;
 
 
+
 @Controller
 public class MainController {
     @Autowired
     private ProductService productService;
+    
+
     @GetMapping("/")
     public String index () {
         return "index";
@@ -26,4 +29,7 @@ public class MainController {
         List<Product> products = productService.findAll();
         return new ModelAndView("product","products", products);
     }
+
+    
+    
 }
